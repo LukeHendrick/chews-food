@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Chews from './Chews'
-
+import Chews from './Chews';
+import Chosen from './Chosen';
 
 export default class App extends Component {
     constructor(props) {
@@ -28,9 +28,7 @@ export default class App extends Component {
         let locs = this.state.locs
         if (this.state.loaded) {
             return (
-                <div>
-                {locs.map((loc, i) => <h1 key={i}>{loc.name}</h1>)}
-                </div>
+                <Chosen locs={locs}/>
             )
         } else {
             return (

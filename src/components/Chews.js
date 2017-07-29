@@ -90,7 +90,7 @@ export default class Chews extends Component {
         return (
             <Modal.Dialog>
                 <Modal.Header>
-                    <Modal.Title>Chews Some Food!</Modal.Title>
+                    <Modal.Title className="chews-title">Chews Some Food!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={this.handleSubmit}>
