@@ -1,0 +1,1 @@
+Takes in a user's location and food preference, returning a random restaurant from Yelp
