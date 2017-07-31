@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, ButtonGroup } from 'react-bootstrap';
+import Loading from './Loading';
 import 'whatwg-fetch'
 
 
@@ -9,8 +10,7 @@ export default class Chews extends Component {
         super(props);
 
         this.state = {
-            locs: [],
-            loaded: false,
+            loading: false,
             categories: [],
             price: 2,
             latitude: 0,
@@ -68,6 +68,11 @@ export default class Chews extends Component {
     }
 
     handleSubmit(e) {
+        this.setState(() => {
+            return {
+                loading: true
+            }
+        })
         e.preventDefault();
         navigator.geolocation.getCurrentPosition((pos) => {
             let searchRequest = {
@@ -77,16 +82,12 @@ export default class Chews extends Component {
                 longitude: pos.coords.longitude,
                 radius: Math.round(this.state.radius / 0.00062137),
             }
-            fetch(`/api/search/?term=${searchRequest.term}&categories=${searchRequest.categories}&latitude=${Number(searchRequest.latitude)}&longitude=${searchRequest.longitude}&radius=${searchRequest.radius}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    this.props.yelpGet(data)
-                    console.log(data);
-                })
-        })
+            this.props.yelpGet(searchRequest)
+            })
     }
 
     render() {
+        let isLoading = this.state.loading;
         return (
             <Modal.Dialog>
                 <Modal.Header>
@@ -128,7 +129,11 @@ export default class Chews extends Component {
                             <Button onClick={this.handleRadiusChange} value={10} className={this.state.radius === 10 ? "active": "notActive"}> 10 Miles </Button>
                         </ButtonGroup><br></br>
                         <br></br>
-                        <Button className="btn-danger" type="submit" value="Submit">Submit</Button>
+                        <Button 
+                        disabled={isLoading}
+                        className="btn-danger" 
+                        type="submit" 
+                        value="Submit">{isLoading ? 'Loading...' : 'Submit'}</Button>
                     </form>
                 </Modal.Body>
             </Modal.Dialog>

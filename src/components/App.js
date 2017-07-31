@@ -14,21 +14,26 @@ export default class App extends Component {
         this.handleYelpGet = this.handleYelpGet.bind(this);
     }
 
-    handleYelpGet(data) {
-        this.setState(() => {
-            return {
-                locs: data,
-                loaded: true
-            }
+    handleYelpGet(searchRequest) {
+        fetch(`/api/search/?term=${searchRequest.term}&categories=${searchRequest.categories}&latitude=${Number(searchRequest.latitude)}&longitude=${searchRequest.longitude}&radius=${searchRequest.radius}`)
+        .then((res) => res.json())
+        .then((data) => {
+            this.setState(() => {
+                return {
+                    loc: data,
+                    loaded: true
+                }
+            })
+            console.log(data);
         })
     }
 
 
     render() {
-        let locs = this.state.locs
+        let loc = this.state.loc
         if (this.state.loaded) {
             return (
-                <Chosen locs={locs}/>
+                <Chosen loc={loc}/>
             )
         } else {
             return (

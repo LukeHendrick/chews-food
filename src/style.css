@@ -5,7 +5,18 @@ body {
 .chews-title {
     font-size: 5rem;
 }
-
 .yelp-image {
-    margin-top: 3rem;
+    max-width: 99%;
+}
+
+@media (max-height: 1000px) {
+    .yelp-image {
+        margin-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 25%;
+    }
+    .getAll {
+        margin-left: 1rem;
+    }
 }

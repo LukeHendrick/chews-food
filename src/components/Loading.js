@@ -3,7 +3,8 @@ var React = require('react');
 var styles = {
   content: {
     textAlign: 'center',
-    fontSize: '35px'
+    fontSize: '35px',
+    color: 'white',
   }
 }
 class Loading extends React.Component {

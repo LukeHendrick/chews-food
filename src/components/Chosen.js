@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Loading from './Loading';
-import { Thumbnail, Grid, Col, Row } from 'react-bootstrap';
-
+import { Thumbnail, Grid, Col, Row, Button } from 'react-bootstrap';
+import 'whatwg-fetch';
 function importAll(r) {
     let images = {};
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item)});
@@ -17,39 +16,40 @@ export default class Chosen extends Component {
 
         this.state = {
             loc: {},
-            loading: true,
         }
+        this.handleAllGet = this.handleAllGet.bind(this);
     }
     componentDidMount() {
-        let x = Math.round(Math.random() * (this.props.locs.length - 1) + 1)
+        
         this.setState(() => {
             return {
-                loc: this.props.locs[x],
-                loading: false,
+                loc: this.props.loc,
             }
         })
     }
+
+    handleAllGet() {
+        fetch('/api/all')
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+    }
     render() {
-        if (!this.state.loading) {
-            let loc = this.state.loc
-            let rating = loc.rating
-            
-            return (
-                <Grid>
-                    <Col xs={12} md={8} lg={4}> 
+        let loc = this.state.loc
+        let rating = loc.rating        
+        return (
+            <Grid>
+                <Col xs={12} md={8} lg={4}> 
                     <Thumbnail className="yelp-image" src={loc.image_url} alt={loc.name}>
                         <h3>{loc.name}</h3>
                         <p>Description</p>
                         <img src={images[`extra_large_${Number.isInteger(rating) ? rating : Math.floor(rating).toString().concat("_half")}.png`]}
                             alt={loc.name} /><label>&nbsp;Based on {loc.review_count} reviews</label>
                     </Thumbnail>
-                    </Col>
-                </Grid>
+                </Col>
+                <Button className="getAll" bsSize="large" onClick={this.handleAllGet}>Get All </Button>
+                <Button className="getAll" bsSize="large">Get There</Button>
+                <Button className="getAll" bsSize="large">Go to Yelp!</Button>
+            </Grid>
             )
-        } else {
-            return (
-                <Loading />
-            )
-        }
-    }
+        } 
 }
