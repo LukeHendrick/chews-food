@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, ButtonGroup } from 'react-bootstrap';
-import Loading from './Loading';
+import categories from '../categories.js'
 import 'whatwg-fetch'
 
 
@@ -12,7 +12,7 @@ export default class Chews extends Component {
         this.state = {
             loading: false,
             categories: [],
-            price: 2,
+            prices: [1,2],
             latitude: 0,
             longitude: 0,
             radius: 5
@@ -25,7 +25,7 @@ export default class Chews extends Component {
     };
 
     handleRadiusChange(e) {
-        let radius = e.target.value;
+        let radius = Number(e.target.value);
 
         this.setState(() => {
             return {
@@ -35,14 +35,15 @@ export default class Chews extends Component {
     }
 
     handlePriceChange(e) {
-        let price = e.target.value
-
+        let price = Number(e.target.value)
+        let priceArr = Array.apply(null, Array(price + 1)).map(function (_, i) { return i; })
+        console.log(price);
+        priceArr.shift();
         this.setState(() => {
             return {
-                price: price
+                prices: priceArr
             }
         })
-        console.log(this.state.price);
     }
 
     handleCatChange(e) {
@@ -81,57 +82,54 @@ export default class Chews extends Component {
                 latitude: pos.coords.latitude,
                 longitude: pos.coords.longitude,
                 radius: Math.round(this.state.radius / 0.00062137),
+                price: this.state.prices.join(', ')
             }
             this.props.yelpGet(searchRequest)
             })
     }
 
     render() {
+        console.log(this.state.prices);
         let isLoading = this.state.loading;
         return (
             <Modal.Dialog>
                 <Modal.Header>
-                    <Modal.Title className="chews-title">Chews Some Food!</Modal.Title>
+                    <Modal.Title className="chews-title">Select cuisine(s): </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <div className='catContainer'>
+                    {categories.map((cat) => {
+                        return (
+                            <Button bsSize='lg' 
+                            className={(this.state.categories.indexOf(cat.value) > -1) ? 'active catItem' : 'notActive catItem'} 
+                            onClick={this.handleCatChange}
+                            name={cat.name} value={cat.value}>{cat.name}</Button>
+                        )
+                    })}    
+                    </div>
+                    <hr></hr>
                     <form onSubmit={this.handleSubmit}>
-                        <input onChange={this.handleCatChange}
-                            type="checkbox"
-                            name="Chinese"
-                            value="chinese" /><label>Chinese</label><br></br>
-                        <input onChange={this.handleCatChange}
-                            type="checkbox"
-                            name="Mexican"
-                            value="mexican" /><label>Mexican</label><br></br>
-                        <input onChange={this.handleCatChange}
-                            type="checkbox"
-                            name="Pizza"
-                            value="pizza" /><label>Pizza</label><br></br>
-                        <input onChange={this.handleCatChange}
-                            type="checkbox"
-                            name="Burgers"
-                            value="burgers" /><label>Burgers</label><br></br><br></br>
-                        <label>Price: </label><br></br>
+                        <label className='price'>Price: </label><br></br>
                         <ButtonGroup className="price">
-                            <Button onClick={this.handlePriceChange} value={1}
-                                className={this.state.price === 1 ? "active" : "notActive"}>$</Button>
-                            <Button onClick={this.handlePriceChange} value={2}
-                                className={this.state.price === 2 ? "active" : "notActive"}>$$</Button>
-                            <Button onClick={this.handlePriceChange} value={3}
-                                className={this.state.price === 3 ? "active" : "notActive"}>$$$</Button>
-                            <Button onClick={this.handlePriceChange} value={4}
-                                className={this.state.price === 4 ? "active" : "notActive"}>$$$$</Button>
+                            <Button bsSize='lg' onClick={this.handlePriceChange} value={1}
+                                className={(this.state.prices.indexOf(1) > -1) ? "active price" : "notActive price"}>$</Button>
+                            <Button bsSize='lg' onClick={this.handlePriceChange} value={2}
+                                className={(this.state.prices.indexOf(2) > -1) ? "active price" : "notActive price"}>$$</Button>
+                            <Button bsSize='lg' onClick={this.handlePriceChange} value={3}
+                                className={(this.state.prices.indexOf(3) > -1) ? "active price" : "notActive price"}>$$$</Button>
+                            <Button bsSize='lg' onClick={this.handlePriceChange} value={4}
+                                className={(this.state.prices.indexOf(4) > -1) ? "active price" : "notActive price"}>$$$$</Button>
                         </ButtonGroup><br></br><br></br>
-                        <label>Distance: </label><br></br>
+                        <label className='radius'>Distance: </label><br></br>
                         <ButtonGroup className="radius">
-                            <Button onClick={this.handleRadiusChange} value={2} className={this.state.radius === 2 ? "active": "notActive"}> 2 Miles</Button>
-                            <Button onClick={this.handleRadiusChange} value={5} className={this.state.radius === 5 ? "active": "notActive"}> 5 Miles</Button>
-                            <Button onClick={this.handleRadiusChange} value={10} className={this.state.radius === 10 ? "active": "notActive"}> 10 Miles </Button>
+                            <Button bsSize='lg' onClick={this.handleRadiusChange} value={2} className={this.state.radius === 2 ? "active radius": "notActive radius"}> 2 Miles</Button>
+                            <Button bsSize='lg' onClick={this.handleRadiusChange} value={5} className={this.state.radius === 5 ? "active radius": "notActive radius"}> 5 Miles</Button>
+                            <Button bsSize='lg' onClick={this.handleRadiusChange} value={10} className={this.state.radius === 10 ? "active radius": "notActive radius"}> 10 Miles </Button>
                         </ButtonGroup><br></br>
                         <br></br>
                         <Button 
                         disabled={isLoading}
-                        className="btn-danger" 
+                        className="submit" 
                         type="submit" 
                         value="Submit">{isLoading ? 'Loading...' : 'Submit'}</Button>
                     </form>

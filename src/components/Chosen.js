@@ -34,22 +34,18 @@ export default class Chosen extends Component {
         .then((data) => console.log(data))
     }
     render() {
-        let loc = this.state.loc
-        let rating = loc.rating        
+        let loc = this.state.loc;
+        console.log(loc)
+        let rating = loc.rating;
+        let address = (loc.location) ? loc.location.display_address : []
+        let imgUrl = (loc.image_url) ? loc.image_url.replace(/o\.jpg/, '348s.jpg') : images['noImg.png']
         return (
-            <Grid>
-                <Col xs={12} md={8} lg={4}> 
-                    <Thumbnail className="yelp-image" src={loc.image_url} alt={loc.name}>
+                    <Thumbnail className="yelp-image" src={imgUrl} alt={loc.name}>
                         <h3>{loc.name}</h3>
-                        <p>Description</p>
+                        {address.map((addLine, i) => <p key={i}>{addLine}</p>)}
                         <img src={images[`extra_large_${Number.isInteger(rating) ? rating : Math.floor(rating).toString().concat("_half")}.png`]}
-                            alt={loc.name} /><label>&nbsp;Based on {loc.review_count} reviews</label>
+                            alt={loc.name} /><a href={loc.url}><img className="yelp-logo" src={images['yelp.png']} /></a><label className="based">&nbsp;Based on {loc.review_count} reviews</label>
                     </Thumbnail>
-                </Col>
-                <Button className="getAll" bsSize="large" onClick={this.handleAllGet}>Get All </Button>
-                <Button className="getAll" bsSize="large">Get There</Button>
-                <Button className="getAll" bsSize="large">Go to Yelp!</Button>
-            </Grid>
             )
         } 
 }
