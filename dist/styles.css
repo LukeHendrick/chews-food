@@ -1,0 +1,135 @@
+body {
+    background-color: #c41200;
+    font-family: 'Roboto', sans-serif;
+}
+p {
+    font-family: 'Zilla Slab', serif;
+}
+button.active {
+    background-color: #c41200 !important;
+    color: white !important;
+}
+.submit {
+    background-color: #c41200 !important;
+    color: white !important;
+}
+.img {
+    border: 2px solid black;
+}
+.catContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.catItem {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    width: 103px;
+}
+.chews-title {
+    font-size: 5rem;
+}
+.yelp-image {
+    width: 380px;
+    position: relative;
+    top: 100px;
+    box-shadow: 2px 2px 2px black
+}
+.yelp-logo {
+    position: absolute;
+    top: 78%;
+    left: 50%;
+    width: 50%;
+}
+.based{ 
+    display: block;
+}
+.modal {
+    height: 90%;
+}
+@media (max-height: 1000px) {
+    .yelp-image {
+        top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 25%;
+    }
+    .getAll {
+        margin-left: 1rem;
+    }
+    .chews-title {
+        font-size: 2rem;
+    }
+    hr {
+        margin-top: -.3rem;
+        margin-bottom: 0rem;
+    }
+}
+@media (max-width: 400px) {
+    .yelp-image {
+        width: 350px;
+    }
+    .catItem {
+        font-size: 1.75rem;
+        font-weight: bold;
+        margin-left: .35rem;
+        margin-bottom: .5rem;;
+    }
+}
+@media (max-width: 360px) {
+    .catItem {
+        font-size: 1.5rem;
+        margin-left: .25rem;
+        width: 95px;
+    }
+    hr {
+        margin-top: 1rem;
+    }
+}
+@media (max-width: 330px) {
+    .radius {
+        font-size: 1.55rem;
+        margin-bottom: -.5rem;
+    }
+    label.price {
+        font-size: 1.55rem
+    }
+    button.price {
+        font-size: 1.55rem;
+        margin-top: -.5rem
+    }
+    .yelp-image {
+        margin-top: .1rem;
+        width: 310px;
+        height: 465px;
+    }
+    hr {
+        margin-top: 0;
+    }
+    .caption > h3 {
+        margin-top: -.25rem;
+        font-size: 2rem;
+    }
+    .catItem {
+        font-size: 1.25rem;
+        width: 90px
+    }
+    .catContainer {
+        margin-left: -1rem
+    }
+    .modal-header {
+        margin-bottom: -1rem;
+    }
+    .yelp-logo {
+        left: 52%;
+        top: 77%;
+    }
+    .chews-title {
+        font-size: 2rem;
+    }
+    .modal {
+        margin-top: -1rem;
+        height: 520px;
+    }
+}
+/*# sourceMappingURL=styles.css.map*/
