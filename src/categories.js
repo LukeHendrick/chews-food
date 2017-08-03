@@ -53,7 +53,7 @@ module.exports = [
     },
     {
         name: 'Indian',
-        value: 'indian'
+        value: 'indpak'
     },
     {
         name: 'Caribbean',
