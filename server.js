@@ -2,8 +2,14 @@ const express = require('express');
 const app = express();
 const api = require('./api.js');
 const commonPaths = require('./build-utils/common-paths')
+const PORT = process.env.PORT || 3000;
 let allData;
 
+app.use(express.static(__dirname + '/dist'));
+
+app.get('/', (req, res) => {
+    res.sendFile('index.html');
+})
 
 app.get('/api/search/*', function(req, res) {
     searchReq = req.query
@@ -21,6 +27,6 @@ app.get('/api/all', (req, res) => {
     res.send(allData);
 })
 
-app.listen(3000, function() {
-    console.log('App listening on port 3000!');
+app.listen(PORT, function() {
+    console.log(`App listening on port ${PORT}!`);
 });
