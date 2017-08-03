@@ -98,9 +98,9 @@ export default class Chews extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <div className='catContainer'>
-                    {categories.map((cat) => {
+                    {categories.map((cat, i) => {
                         return (
-                            <Button bsSize='lg' 
+                            <Button key={i} bsSize='lg' 
                             className={(this.state.categories.indexOf(cat.value) > -1) ? 'active catItem' : 'notActive catItem'} 
                             onClick={this.handleCatChange}
                             name={cat.name} value={cat.value}>{cat.name}</Button>

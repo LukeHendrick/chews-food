@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
@@ -16,7 +17,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextWebpackPlugin("styles.css"),
+        new ExtractTextWebpackPlugin("style.css"),
         new UglifyJsWebpackPlugin({ sourceMap: true }),
         new CompressionWebpackPlugin({
             asset: "[path].gz[query]",
@@ -24,6 +25,12 @@ module.exports = {
             test: /\.(js|html|css)$/,
             threshold: 10240,
             minRatio: 0.8 
-        })
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
     ]
 }
