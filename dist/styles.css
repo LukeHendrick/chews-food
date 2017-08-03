@@ -13,9 +13,6 @@ button.active {
     background-color: #c41200 !important;
     color: white !important;
 }
-.img {
-    border: 2px solid black;
-}
 .catContainer {
     display: flex;
     flex-flow: row wrap;
@@ -35,6 +32,7 @@ button.active {
     top: 100px;
     box-shadow: 2px 2px 2px black
 }
+
 .yelp-logo {
     position: absolute;
     top: 78%;

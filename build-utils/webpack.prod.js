@@ -17,7 +17,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextWebpackPlugin("style.css"),
+        new ExtractTextWebpackPlugin("styles.css"),
         new UglifyJsWebpackPlugin({ sourceMap: true }),
         new CompressionWebpackPlugin({
             asset: "[path].gz[query]",
@@ -31,6 +31,6 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.AggressiveMergingPlugin()
     ]
 }
