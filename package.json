@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.0.0"
+  },
   "scripts": {
     "dev": "npm run webpack-dev-server -- --env.env=dev",
     "build": "npm run webpack -- --env.env=prod",
