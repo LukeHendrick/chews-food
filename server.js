@@ -1,10 +1,12 @@
 const express = require('express');
+const compression = require('compression')
 const app = express();
 const api = require('./api.js');
 const commonPaths = require('./build-utils/common-paths')
 const PORT = process.env.PORT || 3000;
 let allData;
 
+app.use(compression());
 app.use(express.static(__dirname + '/dist'));
 
 app.get('/', (req, res) => {
