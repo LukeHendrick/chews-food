@@ -1,1 +1,3 @@
-Takes in a user's location and food preference, returning a random restaurant from Yelp
+# Chews Food!
+
+Live demo available [here](https://chews-food.herokuapp.com)
