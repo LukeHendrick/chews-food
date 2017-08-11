@@ -5,6 +5,9 @@ body {
 p {
     font-family: 'Zilla Slab', serif;
 }
+.modal-content {
+  margin-top: 15rem;
+}
 button.active {
     background-color: #c41200 !important;
     color: white !important;
@@ -39,13 +42,16 @@ button.active {
     left: 50%;
     width: 50%;
 }
-.based{ 
+.based{
     display: block;
 }
 .modal {
     height: 90%;
 }
-@media (max-height: 1000px) {
+@media (max-height: 900px) {
+    .modal-content{
+      margin-top: 0
+    }
     .yelp-image {
         top: 10px;
         margin-left: auto;
@@ -64,6 +70,9 @@ button.active {
     }
 }
 @media (max-width: 400px) {
+    .modal-content{
+      margin-top: 0
+    }
     .yelp-image {
         width: 350px;
     }
@@ -75,6 +84,9 @@ button.active {
     }
 }
 @media (max-width: 360px) {
+    .modal-content{
+      margin-top: 0
+    }
     .catItem {
         font-size: 1.5rem;
         margin-left: .25rem;
@@ -85,6 +97,9 @@ button.active {
     }
 }
 @media (max-width: 330px) {
+    .modal-content{
+      margin-top: 0
+    }
     .radius {
         font-size: 1.55rem;
         margin-bottom: -.5rem;
@@ -130,4 +145,5 @@ button.active {
         height: 520px;
     }
 }
+
 /*# sourceMappingURL=styles.css.map*/
