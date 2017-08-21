@@ -33,6 +33,7 @@ button.active {
     width: 380px;
     position: relative;
     top: 100px;
+    left: 39%;
     box-shadow: 2px 2px 2px black
 }
 
@@ -48,15 +49,17 @@ button.active {
 .modal {
     height: 90%;
 }
+@media (max-width: 600px) {
+    
+}
 @media (max-height: 900px) {
     .modal-content{
       margin-top: 0
     }
     .yelp-image {
         top: 10px;
-        margin-left: auto;
-        margin-right: auto;
         max-height: 25%;
+        left: 50px;
     }
     .getAll {
         margin-left: 1rem;
@@ -69,12 +72,13 @@ button.active {
         margin-bottom: 0rem;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .modal-content{
       margin-top: 0
     }
     .yelp-image {
-        width: 350px;
+        margin-left: -1%;
+        margin-top: 5%;
     }
     .catItem {
         font-size: 1.75rem;
@@ -83,7 +87,14 @@ button.active {
         margin-bottom: .5rem;;
     }
 }
-@media (max-width: 360px) {
+@media (max-width: 420px) {
+    .yelp-image {
+        margin-left: -4%;
+        margin-top: 5%;
+        width: 350px;
+    }
+}
+@media (max-width: 370px) {
     .modal-content{
       margin-top: 0
     }
@@ -94,6 +105,10 @@ button.active {
     }
     hr {
         margin-top: 1rem;
+    }
+    .yelp-image {
+        width: 300px;
+        margin-left: -9%;
     }
 }
 @media (max-width: 330px) {
