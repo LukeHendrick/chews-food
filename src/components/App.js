@@ -19,6 +19,10 @@ export default class App extends Component {
         fetch(`/api/search/?term=${searchRequest.term}&categories=${searchRequest.categories}&latitude=${Number(searchRequest.latitude)}&longitude=${searchRequest.longitude}&radius=${searchRequest.radius}&price=${searchRequest.price}`)
         .then((res) => res.json())
         .then((data) => {
+            if (data.id == "Not Found") {
+                data.location = {
+                    display_address: ["140 New Montgomery St", "San Francisco, CA 94105"]}
+            }
             this.setState(() => {
                 return {
                     loc: data,

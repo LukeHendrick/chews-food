@@ -9,6 +9,7 @@ module.exports = {
             .then((res) => {
                 return res.data.businesses;
             }).catch((e) => {
+                console.log("ERROR FOUND")
                 console.log(e)
             });
     }

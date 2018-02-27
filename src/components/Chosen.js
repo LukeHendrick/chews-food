@@ -35,6 +35,14 @@ export default class Chosen extends Component {
     }
     render() {
         let loc = this.state.loc;
+        if (loc.id == "Not Found") {
+            return (
+                <div className="not-found">
+                    <h1>Sorry, no results found...try again!</h1>
+                    <Button href='/'>Reload</Button>
+                </div>
+            )
+        }
         console.log(loc)
         let rating = loc.rating;
         let address = (loc.location) ? loc.location.display_address : []

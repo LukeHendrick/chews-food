@@ -32,11 +32,25 @@ button.active {
 .yelp-image {
     width: 380px;
     position: relative;
-    top: 100px;
-    left: 39%;
+    margin-left: 42%;
+    margin-top: 12%;
     box-shadow: 2px 2px 2px black
 }
-
+.not-found {
+    width: 380px;
+    position: relative;
+    margin-left: 42%;
+    margin-top: 12%;
+    box-shadow: 2px 2px 2px black;
+    background: white;
+    text-align: center;
+}
+.not-found h1 {
+    font-size: 5rem;
+}
+.not-found .btn {
+    font-size: 4rem;
+}
 .yelp-logo {
     position: absolute;
     top: 78%;
@@ -49,14 +63,33 @@ button.active {
 .modal {
     height: 90%;
 }
-@media (max-width: 600px) {
-    
+@media (max-width: 1350px) {
+    .yelp-image {
+        margin-left: 33%;
+        margin-top: 2%
+    }
+    .not-found {
+        margin-left: 33%;
+        text-align: center;
+    }
+    .not-found h1 {
+    font-size: 4rem;
+    }
+    .not-found .btn {
+    font-size: 3rem;
+    box-shadow: 2px 2px 2px black;
+    }
 }
 @media (max-height: 900px) {
     .modal-content{
       margin-top: 0
     }
     .yelp-image {
+        top: 10px;
+        max-height: 25%;
+        left: 50px;
+    }
+    .not-found {
         top: 10px;
         max-height: 25%;
         left: 50px;
@@ -80,6 +113,10 @@ button.active {
         margin-left: -1%;
         margin-top: 5%;
     }
+    .not-found {
+        margin-left: -1%;
+        margin-top: 50%;
+    }
     .catItem {
         font-size: 1.75rem;
         font-weight: bold;
@@ -91,6 +128,11 @@ button.active {
     .yelp-image {
         margin-left: -4%;
         margin-top: 5%;
+        width: 350px;
+    }
+    .not-found {
+        margin-left: -4%;
+        margin-top: 50%;
         width: 350px;
     }
 }
@@ -107,6 +149,10 @@ button.active {
         margin-top: 1rem;
     }
     .yelp-image {
+        width: 300px;
+        margin-left: -9%;
+    }
+    .not-found {
         width: 300px;
         margin-left: -9%;
     }
@@ -127,6 +173,11 @@ button.active {
         margin-top: -.5rem
     }
     .yelp-image {
+        margin-top: .1rem;
+        width: 310px;
+        height: 465px;
+    }
+    .not-found {
         margin-top: .1rem;
         width: 310px;
         height: 465px;
