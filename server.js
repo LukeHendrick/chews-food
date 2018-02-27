@@ -5,13 +5,13 @@ const api = require('./api.js');
 const commonPaths = require('./build-utils/common-paths')
 const PORT = process.env.PORT || 3000;
 let allData;
-// app.use('*', (req, res, next) => {
-//     if (req.headers['x-forwarded-proto'] !== 'https') {
-//         return res.redirect('https://' + req.headers.host + req.url)
-//     } else {
-//         return next();
-//     }
-// })
+app.use('*', (req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect('https://' + req.headers.host + req.url)
+    } else {
+        return next();
+    }
+})
 app.use(compression());
 app.use(express.static(__dirname + '/dist'));
 
